@@ -62,6 +62,16 @@ jobs:
       - name: Build and test
         run: mvn clean package
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          tags: interviewproject:latest
+
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
